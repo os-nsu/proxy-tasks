@@ -67,7 +67,7 @@ typedef struct ConfigVariable {
 } ConfigVariable;
 
 /*!
-    Create config table. It should be called once.
+    Creates config table. It should be called once.
     \return -1 if table already exists or 0 if all is OK
 */
 int create_config_table(void);
@@ -75,9 +75,9 @@ int create_config_table(void);
 /*!
     Destroy config table and frees all resources associated with it. It should
    be called once.
-   \return -1 if table no exists or 0 if all is OK
+   \return
 */
-int destroy_config_table(void);
+void destroy_config_table(void);
 
 /*!
     Parse configuration file located on path.

@@ -56,8 +56,7 @@ int init_logger(char* path, long file_size_limit, int files_limit);
 void fini_logger(void);
 
 /*!
-    This function write message to .log file with specified format (see file
-    description)
+    This function write message to specified stream
     \param [in] stream type of output stream   
     \param [in] level level of message
     \param [in] filename name of code file where write_log was called

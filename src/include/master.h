@@ -10,10 +10,10 @@
     IDENTIFICATION
         src/include/master.h
 */
+#include <stdint.h>
 
 //=========START_HOOK INTERFACE=========
 
-#include <stdint.h>
 typedef void (*Hook)(void);
 
 extern Hook executor_start_hook; //< is called immediately before start main loop of master process
