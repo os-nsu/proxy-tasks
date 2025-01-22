@@ -11,6 +11,6 @@
 
 /*!
     A wrapper over a system call time
-    \return time as number of seconds since the Epoch, 1970-01-01 00:00:00 +0000 (UTC) 
+    \return time as number of seconds since the Epoch, 1970-01-01 00:00:00 +0000 (UTC)
 */
 time_t get_time(void);
