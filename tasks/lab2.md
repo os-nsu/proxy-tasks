@@ -81,6 +81,7 @@
 
 ## Интерфейс и струтура проекта
 
+
 ### Файл my_time.h
 
 #### Функции:
@@ -88,3 +89,205 @@
 | Название     | Описание                 | Аргументы | Возвращаемое значение                    |
 | :----------- | :----------------------- | :-------- | :--------------------------------------- |
 | **get_time** | Возвращает текущее время | **void**  | **time_t**, текущее время в UNIX формате |
+
+
+### Файл logger.h
+
+#### Общие замечания:
+    Этот файл содержит сигнатуры функций logger.
+
+    Логгер - это синглтон. Поэтому вызов функции init_logger при созданном логгере должна возвращать значение -1.
+
+    Логгер должен уметь записывать сообщения в некоторые выходные потоки, которые
+    перечисляются в OutputStream:
+
+    1) STDOUT
+    2) STDERR - стандартный поток для ведения log. Регистратор должен использовать этот поток
+        если выбранный поток недоступен.
+    3) FILE - регистратор может использовать этот поток, если параметр path в
+        вызове init_logger не равен NULL.
+
+    В выбранном каталоге есть log файлы. Их имена соответствуют следующему правилу: "proxyN.log",
+    где N - порядковый номер файла. Если все доступные файлы журнала заполнены, то logger
+    начинает перезаписывать их по кругу.
+
+#### Типы:
+
+| Название типа    | метатип  | состав                                                                                         |
+| :--------------- | :------- | :--------------------------------------------------------------------------------------------- |
+| **LogLevel**     | **enum** | **LOG_DEBUG** = 1<br>  **LOG_INFO**<br>  **LOG_WARNING**<br>  **LOG_ERROR**<br>  **LOG_FATAL** |
+| **OutputStream** | **enum** | **STDOUT** = 1<br> **STDERR**<br> **FILE**                                                     |
+
+
+
+#### Функции:
+
+<table>
+    <thead>
+        <tr>
+            <th>Название</th>
+            <th>Описание</th>
+            <th>Аргументы</th>
+            <th>Возвращаемое значение</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><b>init_logger</b></td>
+            <td>Инициализирует логгер (его структуры данных)</td>
+            <td>
+                <b>[in] char* path</b> Путь до директории с файлами журнала. Может быть NULL, но тогда режим журналирования FILE будет не доступен<br>
+                <b>[in] int file_size_limit</b> максимальный размер файла журнала в Кб (-1 означает бесконечность)<br>
+                <b>[in] int files_limit</b> максимальное число файлов в директории (-1 означает бесконечность)
+            </td>
+            <td><b>int</b>, 0 в случае успеха, -1 иначе</td>
+        </tr>
+        <tr>
+            <td><b>fini_logger</b></td>
+            <td>Освобождает все захваченные ресурсы логгером</td>
+            <td><b>void</b></td>
+            <td><b>void</b></td>
+        </tr>
+        <tr>
+            <td><b>write_log</b></td>
+            <td>Пишет сообщение в журнал</td>
+            <td>
+                <b>[in] OutputStream stream</b> тип потока журналирования<br>
+                <b>[in] LogLevel level</b> уровень сообщения<br>
+                <b>[in] char* filename</b> имя файла из которого был вызов функции<br>
+                <b>[in] int line_number</b> номер строки из которой был вызов<br>
+                <b>[in] char* format</b> форматированная по правилам printf строка<br>
+                <b>[in] ...</b> вариадический список аргументов форматированной строки
+            </td>
+            <td><b>void</b></td>
+        </tr>
+    </tbody>
+</table>
+
+
+### Файл config.h
+
+#### Общие замечания:
+
+    Этот файл содержит сигнатуры функций конфигурации и определения типов.
+
+    Config - это синглтон. Следовательно, функция create_config_table должна возвращать -1, если конфиг уже существует.
+
+    Конфигурационный файл представляет собой набор пар ключ-значение в формате: "ключ = значение" ( количество пробелов
+    и их расположение относительно несущественных могут быть любыми)
+
+    ключ должен состоять из следующих символов: A-Z, a-z, 0-9, _, - и его длина должна быть <= 127
+
+    значение должно быть одного из следующих типов:
+        INTEGER - целое число со знаком и размером 64 бита
+        REAL число с плавающей запятой и двойной точностью
+        STRING - константная строка в стиле C
+    и массив из этих типов в формате: "массив = [значение, значение, ..., значение]". Один массив может содержать
+    значения только одного типа.
+
+    Также строка конфигурации может содержать однострочный комментарий, начинающийся с "#".
+
+    Имя файла конфигурации по умолчанию: proxy.conf, он хранится в корневом каталоге проекта.
+
+
+#### Типы:
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left;">Название типа</th>
+      <th style="text-align: left;">метатип</th>
+      <th style="text-align: left;">состав</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left;"><b>ConfigData</b></td>
+      <td style="text-align: left;"><b>union</b></td>
+      <td style="text-align: left;">
+        <b>int64_t* integer</b><br>
+        <b>double* real</b><br>
+        <b>char** string</b>
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align: left;"><b>ConfigVarType</b></td>
+      <td style="text-align: left;"><b>enum</b></td>
+      <td style="text-align: left;">
+        <b>UNDEFINED</b> = 0<br>
+        <b>INTEGER</b> = 1<br>
+        <b>REAL</b><br>
+        <b>STRING</b>
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align: left;"><b>ConfigVariable</b></td>
+      <td style="text-align: left;"><b>struct</b></td>
+      <td style="text-align: left;">
+        <b>char* name</b><br>
+        <b>char* description</b><br>
+        <b>ConfigData data</b> значение переменной. Может быть как массивом, так и одиночным значением. Надо смотреть count, чтобы понять точно.<br>
+        <b>ConfigVarType type</b> тип. Если UNDEFINED, значит произошла ошибка и другие поля не имеют смысла.<br>
+        <b>int count</b> количество аргументов.
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+
+#### Функции:
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left;">Название</th>
+      <th style="text-align: left;">Описание</th>
+      <th style="text-align: left;">Аргументы</th>
+      <th style="text-align: left;">Возвращаемое значение</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left;"><b>create_config_table</b></td>
+      <td style="text-align: left;">Инициализирует структуры данных системы конфигурации</td>
+      <td style="text-align: left;"><b>void</b></td>
+      <td style="text-align: left;"><b>int</b>, -1 если система уже проинициализирована или произошла ошибка, 0 в случае успеха</td>
+    </tr>
+    <tr>
+      <td style="text-align: left;"><b>destroy_config_table</b></td>
+      <td style="text-align: left;">Освобождает все ресурсы, используемые системой конфигурации</td>
+      <td style="text-align: left;"><b>void</b></td>
+      <td style="text-align: left;"><b>void</b></td>
+    </tr>
+    <tr>
+      <td style="text-align: left;"><b>parse_config</b></td>
+      <td style="text-align: left;">Считывает параметры конфигурации из файла</td>
+      <td style="text-align: left;"><b>[in]const char* path</b> путь до файла конфигурации. Не может иметь значение NULL.</td>
+      <td style="text-align: left;"><b>int</b>, 0 в случае успеха, -1 если произошла ошибка</td>
+    </tr>
+    <tr>
+      <td style="text-align: left;"><b>define_variable</b></td>
+      <td style="text-align: left;">Регистрирует новую переменную конфигурации</td>
+      <td style="text-align: left;"><b>[in]const ConfigVariable variable</b> инициализирующая структура</td>
+      <td style="text-align: left;"><b>int</b>, 0 в случае успеха, -1 если произошла ошибка</td>
+    </tr>
+    <tr>
+      <td style="text-align: left;"><b>get_variable</b></td>
+      <td style="text-align: left;">Берет значение переменной из системы конфигурации по имени</td>
+      <td style="text-align: left;"><b>[in]const char* name</b> имя переменной</td>
+      <td style="text-align: left;"><b>ConfigVariable</b> значение переменной в случае успеха или структуру с типом UNDEFINED в случае ошибки</td>
+    </tr>
+    <tr>
+      <td style="text-align: left;"><b>set_variable</b></td>
+      <td style="text-align: left;">Устанавливает значение переменной. Если переменная не зарегестрирована, то создаёт переменную с таким именем и заполняет значение</td>
+      <td style="text-align: left;"><b>[in]const ConfigVariable variable</b> новое значение переменной</td>
+      <td style="text-align: left;"><b>int</b>, 0 в случае успеха, -1 если произошла ошибка</td>
+    </tr>
+    <tr>
+      <td style="text-align: left;"><b>does_variable_exist</b></td>
+      <td style="text-align: left;">Определяет зарегестрирована ли переменная с данным именем</td>
+      <td style="text-align: left;"><b>[in]const char* name</b> проверяемое имя</td>
+      <td style="text-align: left;"><b>bool</b>, true если существует, false иначе</td>
+    </tr>
+  </tbody>
+</table>
