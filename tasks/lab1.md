@@ -51,6 +51,8 @@
     Для сборки нужно использовать Makefile и утилиту make. При этом необходимо настроить проброс переменнных окружения
     CCFLAGS, CFLAGS, COPT, CPPFLAGS, LDFLAGS. Это необходимо для того, чтобы система тестирования могла собрать проект с санитайзерами.
 
+    Также необходимо указать следующие флаги компиляции -Wall -Wpedantic -Wpointer-arith -Wendif-labels -Wmissing-format-attribute -Wimplicit-fallthrough=3 -Wcast-function-type -Wshadow=compatible-local -Wformat-security. Это нужно для строгой проверки ошибок.
+
     Дерево каталогов должно иметь следующую структуру:
 
     root project directory
