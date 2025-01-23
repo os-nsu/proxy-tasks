@@ -41,7 +41,7 @@
 ### Обработка ошибок
 
  - Если *плагин* с требуемым именем файла *отсутствует*, то программа должна написать в stderr сообщение:<br><tab>
- <code>"Library couldn't be opened.\n \ <br>\tLibrary's path is %s\n \ <br>\tdlopen: %s\n \ <br>\tcheck plugins folder or rename library\n", ${имя_плагина}, ${сообщение_об_ошибке_от_dlopen}</code><br>
+ <code>"Library couldn't be opened.\n \ <br>\tLibrary's path is %s\n \ <br>\tdlopen: %s\n \ <br>\tcheck plugins folder or rename library\n", ${путь_до_плагина}, ${сообщение_об_ошибке_от_dlopen}</code><br>
    очистить выделенные под плагин структуры и продолжить работу.
  - Если *функция* с требуемым именем *отсутствует в плагине*, то программа должна написать в stderr сообщение:<br>
   <code>"Library couldn't execute %s.\n \ <br>\tLibrary's name is %s. Dlsym message: %s\n \ <br>\tcheck plugins folder or rename library\n",${имя_функции}, ${имя_плагина}, ${ошибка_dlsym}</code><br>
