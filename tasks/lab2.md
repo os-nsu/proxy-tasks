@@ -207,25 +207,25 @@
 <table>
   <thead>
     <tr>
-      <th style="text-align: left;">Название типа</th>
-      <th style="text-align: left;">метатип</th>
-      <th style="text-align: left;">состав</th>
+      <th>Название типа</th>
+      <th>метатип</th>
+      <th>состав</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td style="text-align: left;"><b>ConfigData</b></td>
-      <td style="text-align: left;"><b>union</b></td>
-      <td style="text-align: left;">
+      <td><b>ConfigData</b></td>
+      <td><b>union</b></td>
+      <td>
         <b>int64_t* integer</b><br>
         <b>double* real</b><br>
         <b>char** string</b>
       </td>
     </tr>
     <tr>
-      <td style="text-align: left;"><b>ConfigVarType</b></td>
-      <td style="text-align: left;"><b>enum</b></td>
-      <td style="text-align: left;">
+      <td ><b>ConfigVarType</b></td>
+      <td ><b>enum</b></td>
+      <td >
         <b>UNDEFINED</b> = 0<br>
         <b>INTEGER</b> = 1<br>
         <b>REAL</b><br>
@@ -233,9 +233,9 @@
       </td>
     </tr>
     <tr>
-      <td style="text-align: left;"><b>ConfigVariable</b></td>
-      <td style="text-align: left;"><b>struct</b></td>
-      <td style="text-align: left;">
+      <td ><b>ConfigVariable</b></td>
+      <td ><b>struct</b></td>
+      <td >
         <b>char* name</b><br>
         <b>char* description</b><br>
         <b>ConfigData data</b> значение переменной. Может быть как массивом, так и одиночным значением. Надо смотреть count, чтобы понять точно.<br>
@@ -252,54 +252,54 @@
 <table>
   <thead>
     <tr>
-      <th style="text-align: left;">Название</th>
-      <th style="text-align: left;">Описание</th>
-      <th style="text-align: left;">Аргументы</th>
-      <th style="text-align: left;">Возвращаемое значение</th>
+      <th>Название</th>
+      <th>Описание</th>
+      <th>Аргументы</th>
+      <th>Возвращаемое значение</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td style="text-align: left;"><b>create_config_table</b></td>
-      <td style="text-align: left;">Инициализирует структуры данных системы конфигурации</td>
-      <td style="text-align: left;"><b>void</b></td>
-      <td style="text-align: left;"><b>int</b>, -1 если система уже проинициализирована или произошла ошибка, 0 в случае успеха</td>
+      <td><b>create_config_table</b></td>
+      <td>Инициализирует структуры данных системы конфигурации</td>
+      <td><b>void</b></td>
+      <td><b>int</b>, -1 если система уже проинициализирована или произошла ошибка, 0 в случае успеха</td>
     </tr>
     <tr>
-      <td style="text-align: left;"><b>destroy_config_table</b></td>
-      <td style="text-align: left;">Освобождает все ресурсы, используемые системой конфигурации</td>
-      <td style="text-align: left;"><b>void</b></td>
-      <td style="text-align: left;"><b>void</b></td>
+      <td><b>destroy_config_table</b></td>
+      <td>Освобождает все ресурсы, используемые системой конфигурации</td>
+      <td><b>void</b></td>
+      <td><b>int</b>, -1 если система уже освободила ресурсы или произошла ошибка, 0 в случае успеха</td>
     </tr>
     <tr>
-      <td style="text-align: left;"><b>parse_config</b></td>
-      <td style="text-align: left;">Считывает параметры конфигурации из файла</td>
-      <td style="text-align: left;"><b>[in]const char* path</b> путь до файла конфигурации от текущей рабочей директории. Не может иметь значение NULL.</td>
-      <td style="text-align: left;"><b>int</b>, 0 в случае успеха, -1 если произошла ошибка</td>
+      <td><b>parse_config</b></td>
+      <td>Считывает параметры конфигурации из файла</td>
+      <td><b>[in]const char* path</b> путь до файла конфигурации от текущей рабочей директории. Не может иметь значение NULL.</td>
+      <td><b>int</b>, 0 в случае успеха, -1 если произошла ошибка</td>
     </tr>
     <tr>
-      <td style="text-align: left;"><b>define_variable</b></td>
-      <td style="text-align: left;">Регистрирует новую переменную конфигурации</td>
-      <td style="text-align: left;"><b>[in]const ConfigVariable variable</b> инициализирующая структура</td>
-      <td style="text-align: left;"><b>int</b>, 0 в случае успеха, -1 если произошла ошибка</td>
+      <td><b>define_variable</b></td>
+      <td>Регистрирует новую переменную конфигурации</td>
+      <td><b>[in]const ConfigVariable variable</b> инициализирующая структура</td>
+      <td><b>int</b>, 0 в случае успеха, -1 если произошла ошибка</td>
     </tr>
     <tr>
-      <td style="text-align: left;"><b>get_variable</b></td>
-      <td style="text-align: left;">Берет значение переменной из системы конфигурации по имени</td>
-      <td style="text-align: left;"><b>[in]const char* name</b> имя переменной</td>
-      <td style="text-align: left;"><b>ConfigVariable</b> значение переменной в случае успеха или структуру с типом UNDEFINED в случае ошибки</td>
+      <td ><b>get_variable</b></td>
+      <td >Берет значение переменной из системы конфигурации по имени</td>
+      <td ><b>[in]const char* name</b> имя переменной</td>
+      <td ><b>ConfigVariable</b> значение переменной в случае успеха или структуру с типом UNDEFINED в случае ошибки</td>
     </tr>
     <tr>
-      <td style="text-align: left;"><b>set_variable</b></td>
-      <td style="text-align: left;">Устанавливает значение переменной. Если переменная не зарегестрирована, то создаёт переменную с таким именем и заполняет значение</td>
-      <td style="text-align: left;"><b>[in]const ConfigVariable variable</b> новое значение переменной</td>
-      <td style="text-align: left;"><b>int</b>, 0 в случае успеха, -1 если произошла ошибка</td>
+      <td><b>set_variable</b></td>
+      <td>Устанавливает значение переменной. Если переменная не зарегестрирована, то создаёт переменную с таким именем и заполняет значение</td>
+      <td><b>[in]const ConfigVariable variable</b> новое значение переменной</td>
+      <td><b>int</b>, 0 в случае успеха, -1 если произошла ошибка</td>
     </tr>
     <tr>
-      <td style="text-align: left;"><b>does_variable_exist</b></td>
-      <td style="text-align: left;">Определяет зарегестрирована ли переменная с данным именем</td>
-      <td style="text-align: left;"><b>[in]const char* name</b> проверяемое имя</td>
-      <td style="text-align: left;"><b>bool</b>, true если существует, false иначе</td>
+      <td><b>does_variable_exist</b></td>
+      <td>Определяет зарегестрирована ли переменная с данным именем</td>
+      <td><b>[in]const char* name</b> проверяемое имя</td>
+      <td><b>bool</b>, true если существует, false иначе</td>
     </tr>
   </tbody>
 </table>
