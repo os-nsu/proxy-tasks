@@ -170,7 +170,7 @@ plugins = ["test", "task_manager"] # Список плагинов
             <td><b>fini_logger</b></td>
             <td>Освобождает все захваченные ресурсы логгером</td>
             <td><b>void</b></td>
-            <td><b>void</b></td>
+            <td><b>int</b>, 0 в случае успеха, -1 если ресурсы логгера уже были освобождены</td>
         </tr>
         <tr>
             <td><b>write_log</b></td>
