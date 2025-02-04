@@ -52,9 +52,9 @@
 1. Если *функция* с требуемым именем *отсутствует в плагине*, то программа должна написать в stderr сообщение:<br>
 <code>"Library couldn't execute %s.\n \ <br>\tLibrary's name is %s. Dlsym message: %s\n \ <br>\tcheck plugins folder or rename library\n",${имя_функции}, ${имя_плагина}, ${ошибка_dlsym}</code><br>
 1. Если *не удалось проинициализировать логгер* (код возврата init_logger = -1), то программа должна написать в stderr сообщение:<br>
-<code>"Failed to initialize the logger\n"</code><br> После этого завершить работу с кодом возврата 1.
+<code>"Failed to initialize the logger\n"</code><br> После этого завершить работу с кодом возврата -1.
 1. Если *не удалось проинициализировать конфиг* (код возврата create_config_tables = -1), то программа должна написать в stderr сообщение:<br>
-<code>"Failed to initialize the config\n"</code><br> После этого завершить работу с кодом возврата 1.
+<code>"Failed to initialize the config\n"</code><br> После этого завершить работу с кодом возврата -1.
 
 
 ## Архитектурные требования
