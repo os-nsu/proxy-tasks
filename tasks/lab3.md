@@ -42,17 +42,17 @@
 
 ### Сообщения task_manager
 1. Если процесс завершился с определённым кодом возврата:
-```C
-"Child process %d finished with code: %d\n", ${pid}, ${код_завершения}
-```
+    ```C
+    "Child process %d finished with code: %d\n", ${pid}, ${код_завершения}
+    ```
 1. Если процесс был остановлен по сигналу:
-```C
-"Child process %d stopped by signal: %d\n", ${pid}, ${номер_сигнала}
-```
+    ```C
+    "Child process %d stopped by signal: %d\n", ${pid}, ${номер_сигнала}
+    ```
 1. Если процесс был завершён по сигналу:
-```C
-"Child process %d terminated by signal: %d\n", ${pid}, ${номер_сигнала}
-```
+    ```C
+    "Child process %d terminated by signal: %d\n", ${pid}, ${номер_сигнала}
+    ```
 
 ### Обработка ошибок
 
