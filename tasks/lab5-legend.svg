@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="820" height="260" viewBox="0 0 820 260">
+  <title>Legend</title>
+  <rect x="0" y="0" width="820" height="260" fill="#ffffff"/>
+
+  <text x="20" y="26" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="18" font-weight="700" fill="#222">Легенда</text>
+
+  <line x1="400" y1="40" x2="400" y2="240" stroke="#e0e0e0" stroke-width="1"/>
+
+  <text x="20" y="52" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="14" font-weight="700" fill="#333">Элементы</text>
+
+  <rect x="20" y="62" width="18" height="18" fill="#E3F2FD" stroke="#1E88E5" stroke-width="2"/>
+  <text x="48" y="76" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="13" fill="#333">Клиенты</text>
+
+  <rect x="20" y="90" width="18" height="18" fill="#FFF3E0" stroke="#FB8C00" stroke-width="2"/>
+  <text x="48" y="104" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="13" fill="#333">Вспомогательные модули сервера</text>
+
+  <circle cx="29" cy="128" r="9" fill="#F3E5F5" stroke="#8E24AA" stroke-width="2"/>
+  <text x="48" y="132" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="13" fill="#333">Рабочие потоки</text>
+
+  <rect x="20" y="146" width="18" height="18" rx="3" ry="3" fill="#E8EAF6" stroke="#3949AB" stroke-width="2"/>
+  <text x="48" y="160" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="13" fill="#333">Хранилище</text>
+
+  <rect x="20" y="174" width="18" height="18" fill="#F1F8E9" stroke="#7CB342" stroke-width="2"/>
+  <text x="48" y="188" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="13" fill="#333">Конфигурация</text>
+
+  <rect x="20" y="202" width="18" height="18" fill="#ECEFF1" stroke="#607D8B" stroke-width="2"/>
+  <text x="48" y="216" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="13" fill="#333">Логирование</text>
+
+  <rect x="20" y="230" width="18" height="18" fill="#E0F7FA" stroke="#00ACC1" stroke-width="2"/>
+  <text x="48" y="244" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="13" fill="#333">Статистика/метрики</text>
+
+  <text x="420" y="52" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="14" font-weight="700" fill="#333">Линии</text>
+
+  <line x1="420" y1="76" x2="517" y2="76" stroke="#1E88E5" stroke-width="3"/>
+  <polygon points="520,76 510,71 510,81" fill="#1E88E5"/>
+  <text x="530" y="80" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="13" fill="#333">Поток команд/ответов RESP2</text>
+
+  <line x1="420" y1="106" x2="517" y2="106" stroke="#FB8C00" stroke-width="2" stroke-dasharray="6,4"/>
+  <polygon points="520,106 510,101 510,111" fill="#FB8C00"/>
+  <text x="530" y="110" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="13" fill="#333">Доступ к хранилищу и разделяемым объектам</text>
+
+  <line x1="420" y1="136" x2="517" y2="136" stroke="#43A047" stroke-width="2" stroke-dasharray="2,4"/>
+  <polygon points="520,136 510,131 510,141" fill="#43A047"/>
+  <text x="530" y="140" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="13" fill="#333">Сбор метрик/статистики</text>
+
+  <line x1="420" y1="166" x2="517" y2="166" stroke="#7E57C2" stroke-width="2" stroke-dasharray="4,3"/>
+  <polygon points="520,166 510,161 510,171" fill="#7E57C2"/>
+  <text x="530" y="170" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="13" fill="#333">Конфигурация/CONFIG SET</text>
+
+  <line x1="420" y1="196" x2="517" y2="196" stroke="#546E7A" stroke-width="2" stroke-dasharray="3,3"/>
+  <polygon points="520,196 510,191 510,201" fill="#546E7A"/>
+  <text x="530" y="200" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="13" fill="#333">Логирование</text>
+</svg>
